@@ -55,7 +55,7 @@
     service.logout = function logout() {
       // Logout of Auth0 removing the session the user had with it.
       angularAuth0.logout({
-        returnTo: window.location.origin
+        returnTo: document.getElementsByTagName("base")[0].href
       });
       // Remove isLoggedIn flag from localStorage
       localStorage.removeItem('isLoggedIn');
