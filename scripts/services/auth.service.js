@@ -52,27 +52,17 @@
       idToken = authResult.idToken;
     }
 
-    service.renewTokens = function renewTokens() {
-      angularAuth0.checkSession({},
-        function(err, result) {
-          if (err) {
-            console.log(err);
-          } else {
-            service.localLogin(result);
-            $state.go("admin");
-          }
-        }
-      );
-    }
-
     service.logout = function logout() {
+      // Logout of Auth0 removing the session the user had with it.
+      angularAuth0.logout({
+        returnTo: window.location.origin
+      });
       // Remove isLoggedIn flag from localStorage
       localStorage.removeItem('isLoggedIn');
       // Remove tokens and expiry time
       accessToken = '';
       idToken = '';
       expiresAt = 0;
-      $state.go('login');
     }
 
     service.isAuthenticated = function isAuthenticated() {

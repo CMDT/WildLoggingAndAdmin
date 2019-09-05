@@ -49,7 +49,7 @@
     app.run(function ($state, $rootScope, $transitions, authService) {
 
         if (localStorage.getItem('isLoggedIn') === 'true') {
-            authService.renewTokens();
+            authService.logout();
         } else {
             // Handle the authentication
             // result in the hash
